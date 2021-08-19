@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 int main() 
 {
 	char check, a, b, c;
@@ -7,24 +7,24 @@ int main()
 
 	std::cin >> check;
 
-	a = '1'; // single quotes are required. specificity of char
+	a = '1';  // single quotes are required. specificity of char
 	b = '2';
 	c = '3';
 
 	do
 	{
 
-		if (check == a) { std::cout << "a"; goto choice; } 
+		if (check == a) { std::cout << "a"; goto choice; }
 
 		if (check == b) { std::cout << "b"; goto choice; }
 
 		if (check == c) { std::cout << "c"; goto choice; }
 
-		else { std::cout << "no"; }
+		else { std::cout << "no, again!";   goto choice; }
 
 	}
 
-		while (check == 0);
+		while (check != 0);
 	
 	
 	return 0; 
