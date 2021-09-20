@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cstdlib> //for rand() and stand() functions.
+#include <ctime> // for time() function.
+
+int seassonTemperChange();
+
+int main()
+{
+	int temperSet;
+	int temperCurr;
+
+	//std::cin >> temperSet;
+
+	std::cout << seassonTemperChange();
+
+	return 0;
+}
+
+//determination of temperature drop depending on the season
+int seassonTemperChange() 
+{
+	int temperCurr;
+	int& temperCurRefer = temperCurr;
+
+	srand ( static_cast <int> (time(0)) );
+	
+	int n = 1 + (rand() % (4 - 1) + 1);
+
+	switch (n)
+	{
+	case 1:
+			//min 5, max 30, int summer 
+		int temperCurr = 5 + (rand() % ((30 - 5) + 1));
+	case 2:
+			//min -5, max 15, int autumn 
+		int temperCurr = -5 + (rand() % ((15 - (-5)) + 1));
+	case 3:
+			//min -25, max 5, int winter 
+		int temperCurr = -25 + (rand() % ((5 - (-25)) + 1));
+	case 4:
+			//min -5, max 15, int spring 
+		int temperCurr = -5 + (rand() % ((15 - (-5)) + 1));
+	}
+
+	//int temperChange = 1;
+
+
+	return temperCurr;
+}
+/*
+int heater() { 	std::cout << "heat\n"; return 0; }
+int cooler() { std::cout << "cool\n"; return 0; }
+*/
