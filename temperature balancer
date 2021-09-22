@@ -1,53 +1,231 @@
 #include <iostream>
+#include <vector>
 #include <cstdlib> //for rand() and stand() functions.
 #include <ctime> // for time() function.
+#include <windows.h> // for the pause event (Sleep) 
 
-int seassonTemperChange();
+int ticFunc(int& hourRef);
+int RandomInLimits(int min_t, int max_t);
+int sunPosition();
+void sesonicSetting(std::string& seassonRef, int& minRef, int& maxRef, int& hourRef);
+int seasonTemperature(int& hourRef, std::string& seassonRef);
+
+//void temperChangeSeassonic(int& temperCurrRef, int& minRef, int& maxRef);
+//int inRoomTemper(int& temperCurrRef, std::string& seassonRef);
+//void time(int& dayRef, int& hourRef);
+
+
 
 int main()
 {
-	int temperSet;
-	int temperCurr;
+	std::string  seasonChoice;
+	std::string& seassonRef = seasonChoice;
+	std::cout << "Choose a season: \n1 is for a Summer\n2 is for a Autumn\n3 is for a Winter\n4 is for a Spring\n";
+	std::cin >> seasonChoice;
 
-	//std::cin >> temperSet;
+	int hour = 0;
+	int& hourRef = hour;
 
-	std::cout << seassonTemperChange();
+	int sunrise = 0;
+	int& sr = sunrise;
+	int sunset = 0;
+
+	int min_t = 0;
+	int& minRef = min_t;
+	int max_t = 0;
+	int& maxRef = max_t;
+
+	int seassonicSunPositions[2] = { sunrise, sunset };
+	int sesonicTemeratureLimits[2] = { min_t, max_t };
+
+	int temperCurr = 0;
+	int& temperCurrRef = temperCurr;
+
+	int userSetTheTemper;
+	std::cout << "Set a temperature\n";
+	std::cin >> userSetTheTemper;
+
+	for (size_t i = 0; i < 24; i++)
+	{
+		ticFunc(hourRef);
+
+	}
 
 	return 0;
 }
 
-//determination of temperature drop depending on the season
-int seassonTemperChange() 
-{
-	int temperCurr;
-	int& temperCurRefer = temperCurr;
+//int ticFunc(int& hourRef)
+//{
+//	Sleep(500);
+//	return hourRef++;
+//}
+//
+//int RandomInLimits(int min_t, int max_t)
+//{
+//	int randomized = min_t + (rand() % ((max_t - min_t) + 1));
+//
+//	return randomized;
+//}
+//
+//void sesonicSetting(std::string& seassonRef, int& minRef, int& maxRef, int& hourRef)
+//{
+//	if (seassonRef == "Summer")
+//	{
+//		int min_t = 5;
+//		int& minRef = min_t;
+//		int max_t = 30;
+//		int& maxRef = max_t;
+//		int sunrise = 5;
+//		int& sr = sunrise;
+//		int sunset = 21;
+//		int& ss = sunset;
+//	}
+//
+//	if (seassonRef == "Autumn")
+//	{
+//		int min_t = -10;
+//		int& minRef = min_t;
+//		int max_t = 20;
+//		int& maxRef = max_t;
+//		int sunrise = 7;
+//		int& sr = sunrise;
+//		int sunset = 18;
+//		int& ss = sunset;
+//	}
+//
+//	if (seassonRef == "winter")
+//	{
+//		int min_t = -35;
+//		int& minRef = min_t;
+//		int max_t = 5;
+//		int& maxRef = max_t;
+//		int sunrise = 6;
+//		int& sr = sunrise;
+//		int sunset = 16;
+//		int& ss = sunset;
+//	}
+//
+//	if (seassonRef == "Spring")
+//	{
+//		int min_t = -5;
+//		int& minRef = min_t;
+//		int max_t = 20;
+//		int& maxRef = max_t;
+//		int sunrise = 8;
+//		int& sr = sunrise;
+//		int sunset = 19;
+//		int& ss = sunset;
+//	}
+//
+//
+//}
+//
+//int sunPosition(std::string& seassonRef, int& hourRef )
+//{
+//
+//	if season
+//
+//}
+//
+//
+//int seasonTemperature(int& hourRef, std::string& seassonRef)
+//{
+//	srand(static_cast <int> (time(0)));
+//
+//
+//
+//
+//		switch (seasonChoice)
+//		{
+//			//summer, min_t 5, max_t 30.
+//		case 1:
+//		{
+//			seassonRef = "summer";
+//			std::cout << seassonRef;
+//
+//			int min_t = 5;
+//			int& minRef = min_t;
+//			int max_t = 30;
+//			int& maxRef = max_t;
+//
+//			temperChangeSeassonic(temperCurrRef, minRef, maxRef);
+//
+//			break;
+//		}
+//
+//		//autumn, min_t -10, max_t 20.
+//		case 2:
+//		{
+//			seassonRef = "autumn";
+//			std::cout << seassonRef;
+//
+//			int min_t = -10;
+//			int& minRef = min_t;
+//			int max_t = 20;
+//			int& maxRef = max_t;
+//
+//			temperChangeSeassonic(temperCurrRef, minRef, maxRef);
+//
+//			break;
+//		}
+//
+//		//winter, min_t -35, max_t 5.
+//		case 3:
+//		{
+//			seassonRef = "winter";
+//			std::cout << seassonRef;
+//
+//			int min_t = -35;
+//			int& minRef = min_t;
+//			int max_t = 5;
+//			int& maxRef = max_t;
+//
+//			temperChangeSeassonic(temperCurrRef, minRef, maxRef);
+//
+//			break;
+//		}
+//
+//		//spring, min_t -5, max_t 20.
+//		case 4:
+//		{
+//			seassonRef = "spring";
+//			std::cout << seassonRef;
+//
+//			int min_t = -5;
+//			int& minRef = min_t;
+//			int max_t = 20;
+//			int& maxRef = max_t;
+//
+//			temperChangeSeassonic(temperCurrRef, minRef, maxRef);
+//
+//			break;
+//
+//			default
+//			{
+//				std::cout << "Input Error! Try again."
+//			}
+//		}
+//		}
+//
+//	return 0;
+//}
+//
+//
+//void temperChangeSeassonic(int& temperCurrRef, int& minRef, int& maxRef)
+//{
+//	std::string messageOutdoor = "\nCurrent temperature is: ";
+//
+//	temperCurrRef = (RandomInLimits(minRef, maxRef));
+//	std::cout << messageOutdoor << temperCurrRef << " celsius degrees\n";
+//}
 
-	srand ( static_cast <int> (time(0)) );
-	
-	int n = 1 + (rand() % (4 - 1) + 1);
-
-	switch (n)
-	{
-	case 1:
-			//min 5, max 30, int summer 
-		int temperCurr = 5 + (rand() % ((30 - 5) + 1));
-	case 2:
-			//min -5, max 15, int autumn 
-		int temperCurr = -5 + (rand() % ((15 - (-5)) + 1));
-	case 3:
-			//min -25, max 5, int winter 
-		int temperCurr = -25 + (rand() % ((5 - (-25)) + 1));
-	case 4:
-			//min -5, max 15, int spring 
-		int temperCurr = -5 + (rand() % ((15 - (-5)) + 1));
-	}
-
-	//int temperChange = 1;
 
 
-	return temperCurr;
-}
-/*
-int heater() { 	std::cout << "heat\n"; return 0; }
-int cooler() { std::cout << "cool\n"; return 0; }
-*/
+
+
+
+
+
+
+
+
